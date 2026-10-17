@@ -1,0 +1,5 @@
+interface:
+  display_name: "Dialogue Naming · 概念命名"
+  short_description: "为新概念命名、撰写定义、维护术语表，确保一个对象只有一个名称"
+policy:
+  allow_implicit_invocation: true

@@ -1,7 +1,7 @@
 {
-  "name": "socratic-thinking",
-  "description": "Help people examine assumptions, explore evidence and tradeoffs, and form their own judgment across domains.",
-  "version": "2.0.0",
+  "name": "dialogue",
+  "description": "Language rules for agents exchanging intent with people: an always-on core rule (injected at session start) plus three situational skills for relaying on a user's behalf, naming concepts, and thinking through unformed ideas.",
+  "version": "3.0.0",
   "author": {
     "name": "rzx00",
     "email": "2943894881@qq.com"
@@ -9,13 +9,7 @@
   "homepage": "https://github.com/RZX00/socratic-skills",
   "repository": "https://github.com/RZX00/socratic-skills",
   "license": "MIT",
-  "keywords": [
-    "skills",
-    "socratic",
-    "thinking",
-    "decision-making",
-    "claude-code",
-    "codex"
-  ],
-  "skills": "./skills"
+  "keywords": ["skills", "dialogue", "intent", "relay", "glossary", "socratic", "claude-code", "codex"],
+  "skills": "./skills",
+  "hooks": "./hooks/hooks.json"
 }
