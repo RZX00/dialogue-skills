@@ -1,0 +1,82 @@
+[
+ {
+  "query": "我说不清我们产品到底好在哪，帮我理一下",
+  "should_trigger": true
+ },
+ {
+  "query": "先别动手，我们一起想想 BP 第二环该从谁讲起",
+  "should_trigger": true
+ },
+ {
+  "query": "要不要把产品做成订阅制，我有点犹豫",
+  "should_trigger": true
+ },
+ {
+  "query": "我总觉得这个方案哪里不对，但说不上来",
+  "should_trigger": true
+ },
+ {
+  "query": "我们的核心杠杆到底是什么，一起讨论下",
+  "should_trigger": true
+ },
+ {
+  "query": "判断力到底算不算壁垒，陪我想想",
+  "should_trigger": true
+ },
+ {
+  "query": "演示效果不好，问题出在哪",
+  "should_trigger": true
+ },
+ {
+  "query": "招第一个工程师还是先外包，怎么取舍",
+  "should_trigger": true
+ },
+ {
+  "query": "这篇文章的主线有三个方向，我定不下来",
+  "should_trigger": true
+ },
+ {
+  "query": "我们到底要不要做插件市场，帮我想清楚",
+  "should_trigger": true
+ },
+ {
+  "query": "按刚才确认的方案改第三段",
+  "should_trigger": false
+ },
+ {
+  "query": "帮我把这段话改得简洁一点",
+  "should_trigger": false
+ },
+ {
+  "query": "列一下竞品最近一轮的融资额",
+  "should_trigger": false
+ },
+ {
+  "query": "修一下登录页按钮的样式",
+  "should_trigger": false
+ },
+ {
+  "query": "把这个想法写成一页 PRD",
+  "should_trigger": false
+ },
+ {
+  "query": "给我讲讲什么是第二序改变",
+  "should_trigger": false
+ },
+ {
+  "query": "这个 bug 为什么会出现，日志在 logs/app.log",
+  "should_trigger": false
+ },
+ {
+  "query": "帮我做个 Ando 和 stoops 的对比表",
+  "should_trigger": false
+ },
+ {
+  "query": "把 BP 第二页导出成竖版 PDF",
+  "should_trigger": false
+ },
+ {
+  "query": "帮我回复小王说方案可以",
+  "should_trigger": false
+ }
+]

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Dialogue Relay · 代理转述"
+  short_description: "代表用户向他人或其他 Agent 转达信息、委派任务时，保持意图不增不减"
+policy:
+  allow_implicit_invocation: true

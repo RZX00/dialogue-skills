@@ -1,6 +1,0 @@
-interface:
-  display_name: "Socratic Thinking · 思考伙伴"
-  short_description: "通过澄清、证据与不同视角帮助你形成自己的判断，适用于跨领域讨论"
-  default_prompt: "用 $socratic-thinking 陪我理清这个问题，帮助我检验假设和看清取舍，让我形成自己的判断。"
-policy:
-  allow_implicit_invocation: true

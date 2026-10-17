@@ -5,14 +5,14 @@
     "url": "https://github.com/RZX00"
   },
   "metadata": {
-    "description": "Help people examine assumptions, explore evidence and tradeoffs, and form their own judgment across domains.",
-    "version": "2.0.0",
+    "description": "Language rules for agents exchanging intent with people.",
+    "version": "3.0.0",
     "repository": "https://github.com/RZX00/socratic-skills"
   },
   "plugins": [
     {
-      "name": "socratic-thinking",
-      "description": "Help people examine assumptions, explore evidence and tradeoffs, and form their own judgment across domains.",
+      "name": "dialogue",
+      "description": "Always-on core rule plus three situational skills: relay, naming, think.",
       "source": "./"
     }
   ]

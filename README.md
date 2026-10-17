@@ -1,85 +1,93 @@
-# Socratic Thinking
+# socratic-skills · dialogue
 
-![Socratic Thinking banner](assets/banner.png)
+![Socratic Thinking](assets/banner.png)
 
-# Socratic Thinking
+Language rules for AI agents that exchange intent with people. An always-on core rule governs how an agent writes for people and reads what they say; three situational skills cover relaying on a user's behalf, naming concepts, and thinking through ideas that have not yet formed. Works with Claude Code, Codex, Cursor and other tools that read the Agent Skills format. The rules are written in Chinese.
 
-帮助人思考，形成自己的判断。适用于产品、研究、写作、运营、个人决策和编程。
+一组给 AI Agent 用的语言规范，管四件事：Agent 怎样对人说话，怎样读懂人的话，怎样替人对别人说话，怎样和人一起把还没成形的想法想清楚。本版（3.0）取代原来的 socratic-thinking：原技能的「轻档」并入常驻规则，「深档」成为 `dialogue-think`。
 
-A portable Agent Skill that helps people clarify open questions, examine assumptions, and form their own judgment across domains. It contributes evidence and perspective while leaving goals, values, and consequential choices with the user.
+## 出发点
 
-## 工作方式 / How it works
+语言在对话里做三件事，每条规则都从这里推出来：
 
-- 从你的问题、已有判断和不确定处开始。
-- 按需澄清含义、检验假设、查看证据、探索不同视角与后果。
-- 提问不预设答案，不追问到你同意为止；同时主动提供事实、例子和建议。
-- 区分 AI 的推荐与你已经作出的决定，尊重已明确的选择。
-- 想清楚即可收敛，不强制转成执行计划。
+1. **语言完成思想。** 想法是在找到词、排成话的过程中成形的（Vygotsky 1934）。给人一个准确的现成术语，就是给他一件思考工具。
+2. **说话就是做事。** 一句话在世界里做一个动作（Austin 1962）；断言等于说话人承诺「我认这句话、我能给理由」（Brandom 1994）；一个名字被一群人接受，就成了约定（Searle 1995）。所以转述要保持承诺不变，命名要先定准、定了不换。
+3. **能传过去的只有公共的东西。** 私有的图景传不过去（Frege 1892；Wittgenstein《哲学研究》§243 起）；接收方用自己已有的知识把意思重建出来（Reddy 1979）。所以要把含糊的词拆成维度、换成现成术语，用接收方懂的词，并以接收方据此采取的行动判断是否传达成功。
 
-The assistant asks focused, non-leading questions, supplies evidence and examples, and distinguishes its recommendations from your decisions. Clear execution requests proceed without a mandatory interview or repeated confirmation.
+另有一条管时机：精确只在一句话要被照着执行时才需要（Wittgenstein §87；Waismann 1945 的开放结构）。
 
-## 安装 / Install
+由此得出四条原则：只求准确，不求文采（严复所说的信、达，不要雅）；补充的内容必须可追溯到对方的原话、决定或已定术语；精确只在可执行陈述上要求；Agent 是对话中用词更稳定的一方，其用词对用户有示范作用（Pickering & Garrod 2004）。
 
-### Claude Code plugin
+## 结构
 
-```text
-/plugin marketplace add RZX00/socratic-skills
-/plugin install socratic-thinking@socratic-skills
-```
+技能只在模型判断相关时加载，而「准确表达」每一轮都要用。因此每轮都要遵守的部分放在常驻规则里，只在特定情形下用的部分做成技能，能机械检查的交给钩子。
 
-### Windows / PowerShell
+| 层 | 文件 | 生效方式 |
+|---|---|---|
+| 常驻规则 | `core/core.md`、`core/chinese.md` | 每个会话加载；规则第 7 章写明何时加载哪个技能 |
+| 情境技能 | `skills/dialogue-relay`（代理转述）、`skills/dialogue-naming`（概念命名）、`skills/dialogue-think`（共同思考） | 模型判断相关时加载 |
+| 参考资料 | `shared/concepts.md`，安装时复制进需要它的技能 | 技能指明时读取 |
+| 钩子 | `hooks/prompt-signals.mjs`、`skills/dialogue-naming/scripts/term-check.mjs` | 用户发消息时、每次答复结束时 |
 
-```powershell
-irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | iex
-```
+钩子只在有具体信号时才输出：用户在举例，或使用了术语表中已停用的名称。
 
-### macOS / Linux
+## 安装
+
+**方式一：一键脚本（Claude Code、Codex、Cursor）。** 需要 Python 3。
+
+macOS / Linux：
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.sh | bash
 ```
 
-脚本会将 Skill 及调用元数据安装到以下两个目录。可以先下载并查看脚本再运行。
-The scripts install both locations. You can download and inspect them before running.
+Windows（PowerShell）：
 
-- Claude Code: `~/.claude/skills/socratic-thinking/`
-- Codex / Agent skills: `~/.agents/skills/socratic-thinking/`
-- Codex Desktop: `~/.codex/skills/socratic-thinking/`
+```powershell
+irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | iex
+```
 
-手动安装时，将整个 `skills/socratic-thinking/` 目录复制到上述位置。
-For manual installation, copy the entire skill directory to the appropriate location.
+脚本运行 `install/sync.py`，完成六件事：
 
-安装后重启 Agent 或刷新 Skill 列表。Restart the agent or refresh its skill list.
+1. 把常驻规则写入 `~/.claude/rules/dialogue.md`。
+2. 把三个技能装到 `~/.claude/skills/` 和 `~/.agents/skills/`，并把旧的 `socratic-thinking`、`socratic-coding` 移到 `~/.claude/skills-retired/`。
+3. 把常驻规则写进 `~/.codex/AGENTS.md` 的一个标记段。
+4. 生成供 Cursor User Rules 粘贴的副本 `~/.claude/exports/cursor-user-rules.md`。
+5. 安装检查工具 `~/.claude/scripts/lint-spec.mjs`。
+6. 打印两条可加入 Claude Code `settings.json` 的钩子。
 
-## 使用 / Usage
+`--home <目录>` 可先装到测试目录查看结果；`--extra-rule <文件>` 可把你自己的常驻规则一并同步到 Codex 和 Cursor。
 
-匹配的探索性请求可触发它；自动调用取决于宿主与模型，并不保证每次发生。也可以显式调用：
+**方式二：Claude Code 插件。**
 
-- Codex: `$socratic-thinking`
-- Claude Code: 在可用 Skill / 命令列表中选择 Socratic Thinking。
+```
+/plugin marketplace add RZX00/socratic-skills
+/plugin install dialogue@socratic-skills
+```
 
-> 用 $socratic-thinking 陪我想清楚：这个产品是否应该改成订阅制？
+插件不能安装规则文件，所以由一个会话开始时运行的钩子注入常驻规则。不要同时使用两种方式，否则规则会加载两次。
 
-> 这篇文章感觉不对，陪我捋一下，保留我的表达意图。
+术语表放在项目的 `docs/glossary.md` 或根目录的 `GLOSSARY.md`；设置环境变量 `DIALOGUE_GLOSSARY` 可再加一份跨项目的个人术语表。
 
-> Help me examine the assumptions behind this decision and see what evidence could change my mind.
+## 检验
 
-明确的小改动、事实问答和已确认的执行请求不强制重新讨论。
+- 触发：`evals/triggers/` 下每个技能 20 句，一半应触发，一半听起来相近但不应触发。每句运行 3 次，按 6:4 分为调整组和检验组，只用调整组的失败修改描述，按检验组的通过率选版本，至多 5 轮（方法见 agentskills.io 的描述优化指南）。
+- 行为：`evals/behavior.md` 的六个场景，安装与不安装各运行三次，由人评判。
 
-## 从旧版迁移 / Upgrade
+## 撰写约定
 
-Version 2 renames the skill and plugin from `socratic-coding` to `socratic-thinking`. The repository remains `RZX00/socratic-skills`.
+`core/` 和 `skills/` 中的文本供 Agent 执行，采用标准化文件体例（GB/T 1.1-2020）：依次写范围、术语和定义、要求；要求条款使用能愿动词「应 / 宜 / 可」；理由写在「注」中；示例放在 `<examples>` 中，示例中的用户话语可以保留口语。修改后运行：
 
-旧版用户先备份自行修改的内容。新版安装脚本会自动清理各技能目录下的旧版 `socratic-coding` 目录，防止两者同时存在造成指令矛盾或触发覆盖。
+```bash
+node tools/lint-spec.mjs core skills shared
+```
 
-Back up custom edits, remove the old skill from the agent directories you used, and install the new version. Installers preserve old directories.
+它检查要求条款是否带能愿动词、正文是否有口语词和全大写强调、技能的 name 与 description 是否符合 Agent Skills 规范。
 
+## 出处
 
+各项原则和做法的出处、证据强弱和争议见 `shared/concepts.md`。其中标〔未核〕的条目来自二手转述，引用前应先核对原文。
 
-## 卸载 / Uninstall
+## 许可
 
-Remove the installed `socratic-thinking` directories, or uninstall `socratic-thinking@socratic-skills` through the plugin manager.
-
-## License
-
-[MIT](./LICENSE) © rzx00
+MIT

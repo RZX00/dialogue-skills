@@ -1,0 +1,6 @@
+interface:
+  display_name: "Dialogue Think · 共同思考"
+  short_description: "与用户共同澄清尚未成形的想法、目标或判断，判断权归用户"
+  default_prompt: "用 $dialogue-think 陪我把这个问题想清楚。"
+policy:
+  allow_implicit_invocation: true

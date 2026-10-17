@@ -1,0 +1,82 @@
+[
+ {
+  "query": "帮我跟小王说一下，接口文档周五前最好能定，定不了也告诉我一声",
+  "should_trigger": true
+ },
+ {
+  "query": "让 Codex 看一下 src/order.ts 这次的改动，明天要给客户演示下单流程",
+  "should_trigger": true
+ },
+ {
+  "query": "回一下老周：这单这周接不了",
+  "should_trigger": true
+ },
+ {
+  "query": "小张 的 Agent 刚在对话里说测试环境挂了，你看看要不要处理",
+  "should_trigger": true
+ },
+ {
+  "query": "帮我写封邮件给客户那边的对接人，说合同第三条我们想改成分三期付款",
+  "should_trigger": true
+ },
+ {
+  "query": "把我刚才说的需求整理一下发给设计那边，让他们出两版首屏",
+  "should_trigger": true
+ },
+ {
+  "query": "转告团队：今晚的会改到明天下午三点，议程不变",
+  "should_trigger": true
+ },
+ {
+  "query": "他们的 Agent 说已经把 v2 接口部署好了，你接着把前端调用换掉",
+  "should_trigger": true
+ },
+ {
+  "query": "跟投资人那边回个话，材料下周一前发过去",
+  "should_trigger": true
+ },
+ {
+  "query": "你替我在群里回一下 小林，说那个方案我还没看，晚点给意见",
+  "should_trigger": true
+ },
+ {
+  "query": "帮我写一条朋友圈，宣传一下我们的新版本",
+  "should_trigger": false
+ },
+ {
+  "query": "小王上周提的接口方案，你觉得合理吗",
+  "should_trigger": false
+ },
+ {
+  "query": "把这份会议纪要整理成五条要点",
+  "should_trigger": false
+ },
+ {
+  "query": "给 src/order.ts 里的 submitOrder 函数写个注释",
+  "should_trigger": false
+ },
+ {
+  "query": "帮我想想怎么跟投资人讲我们的护城河",
+  "should_trigger": false
+ },
+ {
+  "query": "这封英文邮件讲了什么",
+  "should_trigger": false
+ },
+ {
+  "query": "起草一份给全体用户的产品更新公告",
+  "should_trigger": false
+ },
+ {
+  "query": "查一下 Codex 最新版本支持哪些 skill 字段",
+  "should_trigger": false
+ },
+ {
+  "query": "把 src/order.ts 第 42 行那个空指针修了",
+  "should_trigger": false
+ },
+ {
+  "query": "给这个新功能起个名字",
+  "should_trigger": false
+ }
+]

@@ -1,33 +1,20 @@
-# socratic-thinking installer (Windows / PowerShell)
+# dialogue installer (Windows PowerShell)
 # Usage:  irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | iex
-#Requires -Version 5
-$ErrorActionPreference = 'Stop'
+# Downloads the repository and runs install/sync.py, which installs the always-on rule, the three skills,
+# the Codex AGENTS.md block and the Cursor copy, and moves the replaced socratic-* skills to ~/.claude/skills-retired/.
+$ErrorActionPreference = "Stop"
 
-$RawUrl = 'https://raw.githubusercontent.com/RZX00/socratic-skills/main/skills/socratic-thinking/SKILL.md'
-$Targets = @(
-    (Join-Path $HOME '.claude\skills\socratic-thinking'),  # Claude Code
-    (Join-Path $HOME '.agents\skills\socratic-thinking'),  # Codex / Agent skills
-    (Join-Path $HOME '.codex\skills\socratic-thinking')    # Codex desktop skills
-)
-
-Write-Host 'Installing the socratic-thinking skill...' -ForegroundColor Cyan
-$content = (Invoke-WebRequest -Uri $RawUrl -UseBasicParsing).Content
-$metadataUrl = $RawUrl.Replace('/SKILL.md', '/agents/openai.yaml')
-$metadata = (Invoke-WebRequest -Uri $metadataUrl -UseBasicParsing).Content
-
-foreach ($dir in $Targets) {
-    # Clean up deprecated socratic-coding in the same parent directory
-    $oldDir = Join-Path (Split-Path $dir -Parent) 'socratic-coding'
-    if (Test-Path -LiteralPath $oldDir) {
-        Remove-Item -LiteralPath $oldDir -Recurse -Force
-        Write-Host "  removed deprecated -> $oldDir" -ForegroundColor Yellow
-    }
-    New-Item -ItemType Directory -Force -Path (Join-Path $dir 'agents') | Out-Null
-    Set-Content -Path (Join-Path $dir 'SKILL.md') -Value $content -Encoding UTF8
-    Set-Content -Path (Join-Path $dir 'agents/openai.yaml') -Value $metadata -Encoding UTF8
-    Write-Host "  installed -> $dir" -ForegroundColor Green
+$python = Get-Command python -ErrorAction SilentlyContinue
+if (-not $python) { $python = Get-Command py -ErrorAction SilentlyContinue }
+if (-not $python) { throw "Python is required: https://www.python.org/downloads/" }
+$tmp = Join-Path ([IO.Path]::GetTempPath()) ("dialogue-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Path $tmp | Out-Null
+try {
+  $zip = Join-Path $tmp "repo.zip"
+  Invoke-WebRequest -Uri "https://codeload.github.com/RZX00/socratic-skills/zip/main" -OutFile $zip
+  Expand-Archive -Path $zip -DestinationPath $tmp
+  & $python.Source (Join-Path $tmp "socratic-skills-main/install/sync.py") @args
+  Write-Host "Done. Start a new Claude Code / Codex session to load the rule and skills."
+} finally {
+  Remove-Item -Recurse -Force $tmp
 }
-
-Write-Host 'Done. Restart Claude Code / Codex, then invoke socratic-thinking or ask to think through an open question.' -ForegroundColor Cyan
-
-Write-Host 'Upgrading? Back up custom edits and remove the old socratic-coding skill separately.'
