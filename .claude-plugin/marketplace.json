@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Language rules for agents exchanging intent with people.",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "repository": "https://github.com/RZX00/socratic-skills"
   },
   "plugins": [

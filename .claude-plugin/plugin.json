@@ -1,7 +1,7 @@
 {
   "name": "dialogue",
   "description": "Language rules for agents exchanging intent with people: an always-on core rule (injected at session start) plus three situational skills for relaying on a user's behalf, naming concepts, and thinking through unformed ideas.",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": {
     "name": "rzx00",
     "email": "2943894881@qq.com"
