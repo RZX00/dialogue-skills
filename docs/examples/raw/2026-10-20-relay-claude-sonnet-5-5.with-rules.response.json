@@ -1,0 +1,27 @@
+{
+  "id": "msg_011Cddzo712c8BGNVhHh82Zh",
+  "model": "claude-sonnet-5-5",
+  "created": 1792490068,
+  "object": "chat.completion",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "我这里没有发送渠道，下面是可直接转给开发的内容：\n\n> 用户称有两个用户问过能否导出 CSV。若本周排得开，请做一个 CSV 导出功能。排不开时怎么处理，用户未说明。导出的数据范围和使用目的，用户也未说明。\n\n后两项用户未说明，可能是有意交给开发决定。如果你有要求，告诉我，我补进去。"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "total_tokens": 126,
+    "prompt_tokens": 0,
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 976
+    },
+    "completion_tokens": 126,
+    "cache_read_input_tokens": 3265,
+    "cache_creation_input_tokens": 976
+  }
+}
