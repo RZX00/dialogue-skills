@@ -1,0 +1,10 @@
+{
+  "model": "claude-sonnet-5-5",
+  "max_tokens": 4000,
+  "messages": [
+    {
+      "role": "user",
+      "content": "跟开发说，有两个用户问过导出 CSV，这周排得开就做一个。"
+    }
+  ]
+}
