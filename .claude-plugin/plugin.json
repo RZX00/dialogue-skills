@@ -6,10 +6,10 @@
     "name": "rzx00",
     "email": "114714454+RZX00@users.noreply.github.com"
   },
-  "homepage": "https://github.com/RZX00/socratic-skills",
-  "repository": "https://github.com/RZX00/socratic-skills",
+  "homepage": "https://github.com/RZX00/dialogue-skills",
+  "repository": "https://github.com/RZX00/dialogue-skills",
   "license": "MIT",
-  "keywords": ["skills", "dialogue", "intent", "relay", "glossary", "socratic", "claude-code", "codex"],
+  "keywords": ["skills", "dialogue", "dialogue-skills", "intent", "relay", "glossary", "claude-code", "codex"],
   "skills": "./skills",
   "hooks": "./hooks/hooks.json"
 }

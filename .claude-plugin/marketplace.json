@@ -1,5 +1,5 @@
 {
-  "name": "socratic-skills",
+  "name": "dialogue-skills",
   "owner": {
     "name": "rzx00",
     "url": "https://github.com/RZX00"
@@ -7,7 +7,7 @@
   "metadata": {
     "description": "Language rules for agents exchanging intent with people.",
     "version": "3.1.0",
-    "repository": "https://github.com/RZX00/socratic-skills"
+    "repository": "https://github.com/RZX00/dialogue-skills"
   },
   "plugins": [
     {

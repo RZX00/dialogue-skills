@@ -1,9 +1,9 @@
-# socratic-skills
+# dialogue-skills
 
 让 Claude Code、Codex 里的 Agent 把话说准、转述不走样，你说不清时陪你想清楚。
 
 <p align="center">
-  <img src="./docs/assets/banner.jpg" alt="陶罐画风格的头图：左边坐着的哲人伸出双手，递出一团乱线；线在中间理成一条直线，连着三个圆点，右边站着的人手托下巴在听；上方写着 SOCRATIC SKILLS 和 Rules for clear intent" width="100%" />
+  <img src="./docs/assets/banner.jpg" alt="陶罐画风格的头图：左边坐着的哲人伸出双手，递出一团乱线；线在中间理成一条直线，连着三个圆点，右边站着的人手托下巴在听；图内英文仍写着 SOCRATIC SKILLS 与 Rules for clear intent（项目现名 Dialogue Skills）" width="100%" />
 </p>
 
 ## 实际效果
@@ -53,19 +53,19 @@
 **推荐**：把这句话发给你的 Agent，它会按 [`docs/install.md`](./docs/install.md) 装到正确的位置。
 
 ```text
-帮我安装 socratic-skills：https://raw.githubusercontent.com/RZX00/socratic-skills/main/docs/install.md
+帮我安装 dialogue-skills：https://raw.githubusercontent.com/RZX00/dialogue-skills/main/docs/install.md
 ```
 
 自己装，一条命令（Claude Code 和 Codex 都适用）：
 
 ```bash
 # macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RZX00/dialogue-skills/main/install.sh | bash
 ```
 
 ```powershell
 # Windows PowerShell
-irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/RZX00/dialogue-skills/main/install.ps1 | iex
 ```
 
 装完开一个新会话。
@@ -73,8 +73,8 @@ irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | i
 只用 Claude Code、不想跑脚本时，可以装插件（插件名叫 `dialogue`）：
 
 ```text
-/plugin marketplace add RZX00/socratic-skills
-/plugin install dialogue@socratic-skills
+/plugin marketplace add RZX00/dialogue-skills
+/plugin install dialogue@dialogue-skills
 ```
 
 插件不能放规则文件，所以由会话开始时运行的钩子注入常驻规则。脚本和插件不要同时用，否则规则加载两次。插件清单已通过 `claude plugin validate`（1 条警告），没有在干净环境逐步安装过〔待核〕。
