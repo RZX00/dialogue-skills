@@ -2,7 +2,7 @@
 
 ## 1 范围
 
-本文件供 Agent 在用户要求安装 socratic-skills 时执行。安装内容是一条常驻规则和三个技能：`dialogue-relay`、`dialogue-naming`、`dialogue-think`。
+本文件供 Agent 在用户要求安装 dialogue-skills 时执行。安装内容是一条常驻规则和三个技能：`dialogue-relay`、`dialogue-naming`、`dialogue-think`。
 
 ## 2 术语和定义
 
@@ -40,12 +40,12 @@
 
 ```bash
 # macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RZX00/dialogue-skills/main/install.sh | bash
 ```
 
 ```powershell
 # Windows PowerShell
-irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/RZX00/dialogue-skills/main/install.ps1 | iex
 ```
 
 用户想先看结果时，可克隆本仓库后运行 `python install/sync.py --home <临时目录>`，内容装到该目录而不是用户主目录。
@@ -53,8 +53,8 @@ irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | i
 方式 B（仅 Claude Code，插件）：
 
 ```text
-/plugin marketplace add RZX00/socratic-skills
-/plugin install dialogue@socratic-skills
+/plugin marketplace add RZX00/dialogue-skills
+/plugin install dialogue@dialogue-skills
 ```
 
 注：插件不能携带规则文件，由会话开始时运行的钩子注入常驻规则。
@@ -77,7 +77,7 @@ irm https://raw.githubusercontent.com/RZX00/socratic-skills/main/install.ps1 | i
 
 <examples>
 <example>
-用户：帮我安装 socratic-skills。
+用户：帮我安装 dialogue-skills。
 Agent：先确认 Python 3 已装好，再问用户用 Claude Code 还是 Codex，随后列出将写入的位置。用户同意后运行方式 A 的命令，把末尾的两条钩子配置展示给用户，等用户决定是否添加。最后说：「请开一个新会话，然后对我说：用 dialogue-relay，跟开发说，有两个用户问过导出 CSV，这周排得开就做一个。」
 </example>
 </examples>
