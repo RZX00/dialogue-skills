@@ -128,6 +128,7 @@ irm https://raw.githubusercontent.com/RZX00/dialogue-skills/main/install.ps1 | i
 - 术语表放在项目的 `docs/glossary.md` 或根目录的 `GLOSSARY.md`；环境变量 `DIALOGUE_GLOSSARY` 指向的文件可再加一份跨项目的个人术语表。
 - 钩子由你自己加进 `settings.json`；安装脚本末尾会打印两条配置，不会替你改。
 - `install/sync.py --home <目录>` 先装到测试目录看结果；`--extra-rule <文件>` 把你自己的常驻规则一并同步到 Codex 和 Cursor。
+- 想给条款配上自己的纠正记录（原话、日期）又不想公开时，写进 `~/.claude/rules/dialogue-local.md`：Claude Code 会自动加载，`install/sync.py` 会把它一并同步到 Codex 和 Cursor。
 - 从旧的 `socratic-thinking` 升级：脚本会把它和 `socratic-coding` 移到 `~/.claude/skills-retired/`，不删除。原「轻档」并入了常驻规则，「深档」成为 `dialogue-think`。
 - 卸载：见 [`docs/install.md`](./docs/install.md) 第 6 章。
 
