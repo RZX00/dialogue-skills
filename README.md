@@ -2,11 +2,11 @@
 
 让 Claude Code、Codex 里的 Agent 把话说准、转述不走样，你说不清时陪你想清楚。
 
-[![CI](https://github.com/RZX00/dialogue-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/RZX00/dialogue-skills/actions/workflows/ci.yml)
-
 <p align="center">
   <img src="./docs/assets/banner.jpg" alt="陶罐画风格的头图：左边坐着的哲人伸出双手，递出一团乱线；线在中间理成一条直线，连着三个圆点，右边站着的人手托下巴在听；上方写着 DIALOGUE SKILLS 和 Rules for clear intent" width="100%" />
 </p>
+
+[![CI](https://github.com/RZX00/dialogue-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/RZX00/dialogue-skills/actions/workflows/ci.yml)
 
 ## 实际效果
 
