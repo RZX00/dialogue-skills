@@ -6,6 +6,8 @@
   <img src="./docs/assets/banner.jpg" alt="陶罐画风格的头图：左边坐着的哲人伸出双手，递出一团乱线；线在中间理成一条直线，连着三个圆点，右边站着的人手托下巴在听；上方写着 DIALOGUE SKILLS 和 Rules for clear intent" width="100%" />
 </p>
 
+[![CI](https://github.com/RZX00/dialogue-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/RZX00/dialogue-skills/actions/workflows/ci.yml)
+
 ## 实际效果
 
 同一个模型（claude-sonnet-5-5），同一句话，只差有没有装规则。下面是输出原文，没有改写。
@@ -136,6 +138,7 @@ irm https://raw.githubusercontent.com/RZX00/dialogue-skills/main/install.ps1 | i
 
 - 触发：`evals/triggers/` 下每个技能 20 句，一半应触发，一半听起来相近但不应触发。每句运行 3 次，按 6:4 分为调整组和检验组，只用调整组的失败修改描述，按检验组的通过率选版本，至多 5 轮（方法见 agentskills.io 的描述优化指南）。
 - 行为：`evals/behavior.md` 的七个场景，安装与不安装各运行三次，由人评判。
+- 脚本：`node --test "tests/*.test.mjs"` 检验 `lint-spec`、术语检查、两个钩子和 `install/sync.py`（装进临时目录）的行为，不检验条款文字；每次提交由 CI 在 Linux、Windows、macOS 上运行。
 - 前后对比：`evals/compare.mjs` 用同一个模型、同一句话，跑「不带规则」和「带规则」各一次，并生成 [`docs/examples/`](./docs/examples/) 下的记录。需要自备 OpenAI 兼容接口的地址和密钥。
 
 ### 撰写约定

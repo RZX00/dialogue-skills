@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Authoring conventions (README, "撰写约定")
+        run: node tools/lint-spec.mjs core skills shared
+      - name: Linter, term checker, hooks and installer
+        run: node --test "tests/*.test.mjs"
+      - name: Manifests, hook config and trigger evals are valid JSON
+        shell: bash
+        run: |
+          for file in .claude-plugin/*.json hooks/hooks.json evals/triggers/*.json; do
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))' "$file" || { echo "invalid JSON: $file"; exit 1; }
+          done
+      - name: Installer scripts parse
+        shell: bash
+        run: |
+          bash -n install.sh
+          python -m py_compile install/sync.py
+          node --check evals/compare.mjs
